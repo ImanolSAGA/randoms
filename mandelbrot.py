@@ -17,7 +17,8 @@ def mandelbrot(xa,xb,ya,yb,x,y):
     """ returns a mandelbrot in a string for Tk PhotoImage"""
     #color string table in Photoimage format #RRGGBB 
     clr= []
-    for i in range(256): clr.append('#%02x0000' % int(255*((i/255)**.25)))
+    for i in range(256): 
+      clr.append('#%02x0000' % int(255*((i/255)**.25)))
     # el % es para dar formato en la string, el 02 es que se incluyan 0 a la izq si es menor de 2 cifras, el X es hacer hexadecimal
 
     clr.append(' #000000')  #append the color of the centre as index 256
@@ -25,7 +26,9 @@ def mandelbrot(xa,xb,ya,yb,x,y):
     xm=[xa + (xb - xa) * kx /x  for kx in range(x)]
     ym=[ya + (yb - ya) * ky /y  for ky in range(y)]
     #build the Photoimage string by calling mandel_pixel to index in the color table
-    return" ".join((("{"+" ".join(clr[mandel_pixel(complex(i,j))] for i in xm))+"}" for j in ym))
+    imageString= " ".join((("{"+" ".join(clr[mandel_pixel(complex(i,j))] for i in xm))+"}" for j in ym))
+    #print(imageString)
+    return imageString
 
 
 
@@ -38,7 +41,8 @@ ya = -1.27; yb = 1.27
 
 #Tkinter window
 window = Tk()
-canvas = Canvas(window, width = x, height = y, bg = "#000000");canvas.pack()
+canvas = Canvas(window, width = x, height = y, bg = "#000000");
+canvas.pack()
 img = PhotoImage(width = x, height = y)
 canvas.create_image((0, 0), image = img, state = "normal", anchor = NW)
 
