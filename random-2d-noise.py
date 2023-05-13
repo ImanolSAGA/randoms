@@ -21,6 +21,9 @@ img = PhotoImage(width = xmax, height = ymax)
 canvas.create_image((0, 0), image = img, state = "normal", anchor = NW)
 random.seed(time.time_ns())
 
+clr= []
+for i in range(256): clr.append('#%02x%02x%02x' % (i, i, i))
+
 while running:
   
   # create random noise
@@ -28,8 +31,7 @@ while running:
   for y in range(ymax):
     imageString+= "{"
     for x in range(xmax):
-      randValue= random.randrange(255)
-      imageString+= "#%02x%02x%02x " % (randValue, randValue, randValue)
+      imageString+= clr[random.randrange(255)] + " " 
     imageString+= "} "
 
   #print(imageString)
