@@ -11,20 +11,15 @@ def close_window():
 
 class perlinNoise:
 
-  steps, increment, currentDest, currentVector= [], [], [], []
-  lastValue= 0.0
-  stepCount= 0
-  myRange= 0
-
   def inicialize(self, _info, _range):
-    self.steps.clear()
-    self.increment.clear()
-    self.currentDest.clear()
-    self.currentVector.clear()
     # _info = [ "10x0.8", "4x0.15", "1x0.05" ] format "int x float"
     # el int son los pasos cada cuanto se refresca el valor
     # el float es la fuerza con la que movera el valor, la suma de todos los floats debe ser cerca de 1.0
     # el _range es el rango en el que devolvera los valores, del 0 al valor _range
+    self.steps= []
+    self.increment= []
+    self.currentDest= []
+    self.currentVector= []
     self.myRange= _range
     self.lastValue= random.randrange(self.myRange)
     self.stepCount= 1
@@ -36,7 +31,7 @@ class perlinNoise:
       self.currentVector.append(self.currentDest[i] - self.lastValue)
 
   def nextPerlin(self):
-    newIncrement= 0-0
+    newIncrement= 0.0
     for i in range(len(self.steps)):
       newIncrement+= self.increment[i] * self.currentVector[i]
 
